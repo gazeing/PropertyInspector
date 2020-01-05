@@ -1,0 +1,128 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.blackseal.propertyinspector"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+//        unitTests.returnDefaultValues = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
+        animationsDisabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
+
+    //lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    //coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+    //android navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_component_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_component_version"
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
+
+//    //dagger
+//    implementation "com.google.dagger:dagger:$dagger2_version"
+//    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+//    implementation "com.google.dagger:dagger-android:$dagger2_version"
+//    implementation "com.google.dagger:dagger-android-support:$dagger2_version"
+//    // if you use the support libraries
+//    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    // RXJAVA2
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
+
+    //test stuffs
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'androidx.test:core:1.2.0'
+//    testImplementation 'androidx.test:monitor:1.2.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions_mockwebserver"
+    testImplementation "androidx.arch.core:core-testing:$versions_arch_core"
+    testImplementation "org.mockito:mockito-core:$versions_mockito"
+    testImplementation 'androidx.test:rules:1.2.0'
+    testImplementation 'androidx.test:runner:1.2.0'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'org.robolectric:robolectric:4.3'
+    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation 'com.agoda.kakao:kakao:2.1.0'
+//    kaptTest "com.google.dagger:dagger:$dagger2_version"
+//    testImplementation "com.google.dagger:dagger:$dagger2_version"
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    debugImplementation("androidx.fragment:fragment-testing:1.1.0") {
+        exclude group: 'androidx.test', module: 'core'
+    }
+}
