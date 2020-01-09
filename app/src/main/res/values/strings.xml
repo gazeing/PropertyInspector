@@ -85,7 +85,7 @@
     <string name="great_catchment">100</string>
     <string name="fengshui">Feng Shui</string>
     <string name="out_of_bow">Out of Bow</string>
-    <string name="road_on_face">Road on face</string>
+    <string name="road_on_face">Road in face</string>
     <string name="lower_than_road">Roof lower than road</string>
     <string name="elec_tower">Electric tower around</string>
 </resources>
