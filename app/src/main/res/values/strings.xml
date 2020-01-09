@@ -22,4 +22,19 @@
     <string name="new_decoration">new</string>
     <string name="master_room_direction">Master room direction</string>
     <string name="face_northwest">Facing northwest</string>
+    <string name="rampus">Rampus</string>
+    <string name="rampus_or_study">Rampus or Study</string>
+    <string name="absent">Absent</string>
+    <string name="without_kitchen">Without Kitchen</string>
+    <string name="with_kitchen">With Kitchen</string>
+    <string name="without_door">Without Door</string>
+    <string name="with_door">With Door</string>
+    <string name="grannyFlat">Granny Flat/ In-law accommodation</string>
+    <string name="kitchen_size">Kitchen Size (m2)</string>
+    <string name="covered_carpark">Covered Car park (2.6x5.2m counted as one)</string>
+    <string name="carpark_number">Car park space number</string>
+    <string name="uncovered_carpark">Uncovered car park (drive way)</string>
+    <string name="living_area">Living area size (m2)</string>
+    <string name="dinning">Dinning</string>
+    <string name="family">Family</string>
 </resources>
