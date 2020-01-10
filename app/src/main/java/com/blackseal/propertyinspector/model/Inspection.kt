@@ -10,7 +10,7 @@ data class Inspection(
 
 ) {
     fun calculateRank(): Int {
-        return 146 + houseLocation.calculateRank()
+        return 130 + houseLocation.calculateRank() + decoration.calculateRank()
     }
 }
 
@@ -78,9 +78,73 @@ data class HouseLocation(
     }
 }
 
-class Decoration()
+enum class DECORATION_CONDITION {
+    BROKEN,
+    OLD,
+    USABLE,
+    NEW
+}
+
+enum class BACK_YARD_SIZE {
+    ABSENT,
+    SMALL,
+    MIDIUM,
+    LARGE
+}
+
+enum class BACK_YARD_CONDITION {
+    STEP,
+    SLOPE,
+    BUSHES,
+    FLAT
+}
+
+enum class SWIMMING_POOL_CONDITION {
+    ABSENT,
+    BROKEN,
+    USABLE,
+    NEW
+}
+
+class Decoration(
+    val hasGasSupply: Boolean,
+    val hasAirCon: Boolean,
+    val hasFloorWarmer: Boolean,
+    val hasFirePlace: Boolean,
+    val hasTimberFloor: Boolean,
+    val hasAlfresco: Boolean,
+    val kitchenDecoration: DECORATION_CONDITION,
+    val backYardSize: BACK_YARD_SIZE,
+    val backYardCondition: BACK_YARD_CONDITION,
+    val swimmingPoolCondition: SWIMMING_POOL_CONDITION
+) {
+    fun calculateRank(): Int {
+        return if (hasGasSupply) 0 else -5 + if (hasAirCon) 2 else 0 + if (hasFloorWarmer) 2 else 0 + if (hasFirePlace) 1 else 0 + if (hasTimberFloor) 2 else 1 + if (hasAlfresco) 1 else 0 +
+                when (kitchenDecoration) {
+                    DECORATION_CONDITION.BROKEN -> -4
+                    DECORATION_CONDITION.OLD -> -2
+                    DECORATION_CONDITION.USABLE -> 0
+                    DECORATION_CONDITION.NEW -> 2
+                } + when (backYardSize) {
+            BACK_YARD_SIZE.ABSENT -> -5
+            BACK_YARD_SIZE.SMALL -> -2
+            BACK_YARD_SIZE.MIDIUM -> 0
+            BACK_YARD_SIZE.LARGE -> 5
+        } + when (backYardCondition) {
+            BACK_YARD_CONDITION.STEP -> -1
+            BACK_YARD_CONDITION.SLOPE -> -3
+            BACK_YARD_CONDITION.FLAT -> 0
+            BACK_YARD_CONDITION.BUSHES -> -5
+        } + when (swimmingPoolCondition) {
+            SWIMMING_POOL_CONDITION.ABSENT -> 0
+            SWIMMING_POOL_CONDITION.BROKEN -> -3
+            SWIMMING_POOL_CONDITION.USABLE -> 0
+            SWIMMING_POOL_CONDITION.NEW -> 2
+        }
+    }
+}
 
 
-class HouseShape() {
+class HouseShape(val landSize:Int) {
 
 }
