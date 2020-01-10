@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.blackseal.propertyinspector.R
+import com.blackseal.propertyinspector.model.Inspection
 
 
 import com.blackseal.propertyinspector.ui.InspectionListFragment.OnListFragmentInteractionListener
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_inspection.view.*
  * TODO: Replace the implementation with code for your data type.
  */
 class InspectionRecyclerViewAdapter(
-    private val mValues: List<DummyItem>,
+    private val mValues: List<Inspection>,
     private val mListener: OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<InspectionRecyclerViewAdapter.ViewHolder>() {
 
@@ -42,8 +43,8 @@ class InspectionRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.id
-        holder.mContentView.text = item.content
+        holder.mIdView.text = item.address
+        holder.mContentView.text = item.rank.toString()
 
         with(holder.mView) {
             tag = item

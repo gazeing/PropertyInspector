@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.blackseal.propertyinspector.R
 
@@ -27,12 +29,13 @@ class InspectionListFragment : Fragment() {
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
+    private lateinit var viewModel: InspectionListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       return inflater.inflate(R.layout.fragment_inspection_list, container, false)
+        return inflater.inflate(R.layout.fragment_inspection_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,16 +43,25 @@ class InspectionListFragment : Fragment() {
         fab.setOnClickListener {
             findNavController(this).navigate(R.id.editFragment)
         }
-        // Set the adapter
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (list is RecyclerView) {
             with(list) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = InspectionRecyclerViewAdapter(DummyContent.ITEMS, listener)
             }
         }
+        viewModel =
+            ViewModelProviders.of(this)[InspectionListViewModel::class.java]
+        viewModel.loadList().observe(this, Observer {
+            list.adapter = InspectionRecyclerViewAdapter(it, listener)
+        })
     }
 
     override fun onAttach(context: Context) {

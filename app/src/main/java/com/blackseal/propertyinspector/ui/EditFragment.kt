@@ -35,7 +35,9 @@ class EditFragment : Fragment() {
 
 
             val inspection = Inspection(
+                0,
                 addressEditText.text.toString(), "",
+                0,
                 false,
                 getHouseShape(),
                 getDecoration(),

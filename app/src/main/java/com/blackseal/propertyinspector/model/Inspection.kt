@@ -1,22 +1,35 @@
 package com.blackseal.propertyinspector.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "Inspection")
 data class Inspection(
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
     val address: String,
     val photo: String,
+    var rank: Int = 0,
     val isSold: Boolean,
+    @Embedded
     val houseShape: HouseShape,
+    @Embedded
     val decoration: Decoration,
+    @Embedded
     val houseLocation: HouseLocation
 
 ) {
     fun calculateRank(): Int {
-        return 60 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + when {
-            address.contains("castle hill", true) -> 10
-            address.contains("cherrybrook", true) -> 10
-            address.contains("pennant hill", true) -> 15
-            address.contains("baulkham hill", true) -> 5
-            else -> 0
-        }
+        rank =
+            60 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + when {
+                address.contains("castle hill", true) -> 10
+                address.contains("cherrybrook", true) -> 10
+                address.contains("pennant hill", true) -> 15
+                address.contains("baulkham hill", true) -> 5
+                else -> 0
+            }
+        return rank
     }
 }
 
