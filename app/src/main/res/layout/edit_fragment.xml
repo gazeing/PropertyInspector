@@ -216,6 +216,48 @@
         </RadioGroup>
 
         <TextView
+            android:id="@+id/masterRoomWardrobeTextView"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/master_room_wardrobe" />
+
+        <RadioGroup
+            android:id="@+id/masterRoomWardrobeRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/medium_space">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/masterRoomWardrobeRadio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/broken" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/masterRoomWardrobeRadio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/old" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/masterRoomWardrobeRadio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/usable" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/masterRoomWardrobeRadio4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_decoration" />
+
+        </RadioGroup>
+
+        <TextView
             android:id="@+id/MasterRoomDirectionTextView"
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
@@ -288,7 +330,7 @@
                 android:text="@string/absent" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/grannyFatRadio2"
+                android:id="@+id/grannyFlatRadio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/without_kitchen" />

@@ -10,7 +10,13 @@ data class Inspection(
 
 ) {
     fun calculateRank(): Int {
-        return 130 + houseLocation.calculateRank() + decoration.calculateRank()
+        return 60 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + when {
+            address.contains("castle hill", true) -> 10
+            address.contains("cherrybrook", true) -> 10
+            address.contains("pennant hill", true) -> 15
+            address.contains("baulkham hill", true) -> 5
+            else -> 0
+        }
     }
 }
 
@@ -144,7 +150,67 @@ class Decoration(
     }
 }
 
+enum class LAND_SHAPE {
+    SQUARE,
+    TRIANGLE,
+    AXE,
+    LADDER,
+}
 
-class HouseShape(val landSize:Int) {
+enum class RAMPUS_SPACE {
+    ABSENT,
+    WITHOUT_DOOR,
+    WITH_DOOR
+}
 
+enum class IN_LAW_SPACE {
+    ABSENT,
+    WITHOUT_KITCHEN,
+    WITH_KITCHEN
+}
+
+
+class HouseShape(
+    val landSize: Int,
+    val landShape: LAND_SHAPE,
+    val bedroomNumber: Int,
+    val masterRoomSize: Int,
+    val masterRoomBathRoom: DECORATION_CONDITION,
+    val masterRoomWardrobe: DECORATION_CONDITION,
+    val isMasterRoomFacingNorthWest: Boolean,
+    val rampusSpace: RAMPUS_SPACE,
+    val inLawSpace: IN_LAW_SPACE,
+    val kitchenSize: Int,
+    val livingAreaSize: Int,
+    val coverdCarSpace: Int,
+    val driveWayCarSpace: Int
+) {
+
+    fun calculateRank(): Int {
+        return landSize / 20 + when (landShape) {
+            LAND_SHAPE.SQUARE -> 0
+            LAND_SHAPE.TRIANGLE -> -5
+            LAND_SHAPE.AXE -> -5
+            LAND_SHAPE.LADDER -> -3
+        } + masterRoomSize + (bedroomNumber - 4) * 10 + when (masterRoomBathRoom) {
+            DECORATION_CONDITION.BROKEN -> -3
+            DECORATION_CONDITION.OLD -> -2
+            DECORATION_CONDITION.USABLE -> 0
+            DECORATION_CONDITION.NEW -> 1
+        } + when (masterRoomWardrobe) {
+            DECORATION_CONDITION.BROKEN -> -3
+            DECORATION_CONDITION.OLD -> -1
+            DECORATION_CONDITION.USABLE -> 0
+            DECORATION_CONDITION.NEW -> 1
+        } + if (isMasterRoomFacingNorthWest) 0 else -2 + when (rampusSpace) {
+            RAMPUS_SPACE.ABSENT -> -5
+            RAMPUS_SPACE.WITHOUT_DOOR -> 0
+            RAMPUS_SPACE.WITH_DOOR -> 2
+        } + when (inLawSpace) {
+            IN_LAW_SPACE.ABSENT -> 0
+            IN_LAW_SPACE.WITHOUT_KITCHEN -> 5
+            IN_LAW_SPACE.WITH_KITCHEN -> 10
+        } + kitchenSize + livingAreaSize + (coverdCarSpace - 1) * 5 + driveWayCarSpace * 2
+
+    }
 }

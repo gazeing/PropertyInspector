@@ -49,8 +49,89 @@ class EditFragment : Fragment() {
     }
 
     private fun getHouseShape(): HouseShape {
+        val landShape = when (landShapeRadioGroup.checkedRadioButtonId) {
+            R.id.landShapeRadio1 -> LAND_SHAPE.SQUARE
+            R.id.landShapeRadio2 -> LAND_SHAPE.TRIANGLE
+            R.id.landShapeRadio3 -> LAND_SHAPE.AXE
+            else -> LAND_SHAPE.LADDER
+        }
 
-        return HouseShape(houseSizeEditText.text.toString().toInt())
+        val masterRoomSize =
+            MasterRoomLengthEditText.text.toString().toFloat() * MasterRoomWidthEditText.text.toString().toFloat()
+        MasterRoomSizeResultTextView.text =
+            getString(R.string.square_meter_format, masterRoomSize.toString())
+
+        val masterRoomBathRoom = when (masterRoomBathroomRadioGroup.checkedRadioButtonId) {
+            R.id.masterRoomBathroomRadio1 -> DECORATION_CONDITION.BROKEN
+            R.id.masterRoomBathroomRadio2 -> DECORATION_CONDITION.OLD
+            R.id.masterRoomBathroomRadio3 -> DECORATION_CONDITION.USABLE
+            else -> DECORATION_CONDITION.NEW
+        }
+
+        val masterRoomWardrobe = when (masterRoomWardrobeRadioGroup.checkedRadioButtonId) {
+            R.id.masterRoomWardrobeRadio1 -> DECORATION_CONDITION.BROKEN
+            R.id.masterRoomWardrobeRadio2 -> DECORATION_CONDITION.OLD
+            R.id.masterRoomWardrobeRadio3 -> DECORATION_CONDITION.USABLE
+            else -> DECORATION_CONDITION.NEW
+        }
+
+        val rampusSpace = when (rampusRadioGroup.checkedRadioButtonId) {
+            R.id.rampusRadio1 -> RAMPUS_SPACE.ABSENT
+            R.id.rampusRadio2 -> RAMPUS_SPACE.WITHOUT_DOOR
+            else -> RAMPUS_SPACE.WITH_DOOR
+        }
+
+        val inLawSpace = when (grannyFlatRadioGroup.checkedRadioButtonId) {
+            R.id.grannyFlatRadio1 -> IN_LAW_SPACE.ABSENT
+            R.id.grannyFlatRadio2 -> IN_LAW_SPACE.WITHOUT_KITCHEN
+            else -> IN_LAW_SPACE.WITH_KITCHEN
+        }
+
+        val kitchenSize =
+            kitchenLengthEditText.text.toString().toFloat() * kitchenWidthEditText.text.toString().toFloat()
+        kitchenSizeResultTextView.text =
+            getString(R.string.square_meter_format, kitchenSize.toString())
+
+        val rampusSize =
+            (rampusLengthEditText.text.toString().toFloatOrNull()
+                ?: 0f) * (rampusWidthEditText.text.toString().toFloatOrNull() ?: 0f)
+        rampusSizeResultTextView.text =
+            getString(R.string.square_meter_format, rampusSize.toString())
+
+
+        val dinningSize =
+            (dinningLengthEditText.text.toString().toFloatOrNull()
+                ?: 0f) * (dinningWidthEditText.text.toString().toFloatOrNull() ?: 0f)
+        dinningSizeResultTextView.text =
+            getString(R.string.square_meter_format, dinningSize.toString())
+
+
+        val familySize =
+            (familyLengthEditText.text.toString().toFloatOrNull()
+                ?: 0f) * (familyWidthEditText.text.toString().toFloatOrNull() ?: 0f)
+        familySizeResultTextView.text =
+            getString(R.string.square_meter_format, familySize.toString())
+
+        val livingSize = (familySize + dinningSize + rampusSize).toInt()
+        livingAreaSizeSumTextView.text =
+            getString(R.string.square_meter_format, livingSize.toString())
+
+        return HouseShape(
+            houseSizeEditText.text.toString().toInt(),
+            landShape,
+            bedroomNumbersEditText.text.toString().toInt(),
+            masterRoomSize.toInt(),
+            masterRoomBathRoom,
+            masterRoomWardrobe,
+            MasterRoomDirectionCheckBox.isChecked,
+            rampusSpace,
+            inLawSpace,
+            kitchenSize.toInt(),
+            livingSize,
+            coveredCarParkEditText.text.toString().toInt(),
+            uncoveredCarParkEditText.text.toString().toInt()
+
+        )
     }
 
     private fun getDecoration(): Decoration {
