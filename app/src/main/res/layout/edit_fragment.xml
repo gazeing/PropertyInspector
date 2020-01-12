@@ -1075,6 +1075,7 @@
             android:layout_marginBottom="@dimen/large_space"
             android:background="@color/colorPrimary">
             <TextView
+                android:id="@+id/buttonTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

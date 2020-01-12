@@ -89,5 +89,6 @@
     <string name="lower_than_road">Roof lower than road</string>
     <string name="elec_tower">Electric tower around</string>
     <string name="master_room_wardrobe">Master room wardrobe</string>
-    <string name="square_meter_format">%s m2</string>
+    <string name="square_meter_format">%s m\u00B2</string>
+    <string name="edit">Edit</string>
 </resources>

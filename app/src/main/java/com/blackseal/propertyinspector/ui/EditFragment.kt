@@ -34,20 +34,7 @@ class EditFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(EditViewModel::class.java)
 
         save_btn.setOnClickListener {
-
-
-            val inspection = Inspection(
-                0,
-                addressEditText.text.toString(), "",
-                false,
-                getHouseShape(),
-                getDecoration(),
-                getLocation()
-
-            )
-            rankTextView.text = inspection.calculateRank().toString()
-            scrollView.smoothScrollTo(0, 0)
-            viewModel.saveInspection(inspection)
+            onSave()
         }
 
         addViewToList()
@@ -60,6 +47,22 @@ class EditFragment : Fragment() {
 
 
         observerInspection()
+    }
+
+    fun onSave() {
+
+        val inspection = Inspection(
+            0,
+            addressEditText.text.toString(), "",
+            false,
+            getHouseShape(),
+            getDecoration(),
+            getLocation()
+
+        )
+        rankTextView.text = inspection.calculateRank().toString()
+        scrollView.smoothScrollTo(0, 0)
+        viewModel.saveInspection(inspection)
     }
 
     private fun addViewToList() {
@@ -148,11 +151,19 @@ class EditFragment : Fragment() {
         for (view in viewList) {
             view.isEnabled = false
         }
+        buttonTextView.text = getString(R.string.edit)
+        save_btn.setOnClickListener {
+            unlock()
+        }
     }
 
     fun unlock() {
         for (view in viewList) {
             view.isEnabled = true
+        }
+        buttonTextView.text = getString(R.string.calculate_and_save)
+        save_btn.setOnClickListener {
+            onSave()
         }
     }
 
@@ -186,44 +197,116 @@ class EditFragment : Fragment() {
                     else -> R.id.masterRoomWardrobeRadio4
                 }
             )
+            MasterRoomDirectionCheckBox.isChecked = it.houseShape.isMasterRoomFacingNorthWest
 
-//            rampusRadio1,
-//            rampusRadio2,
-//            rampusRadio3,
-//            grannyFlatRadio1,
-//            grannyFlatRadio2,
-//            grannyFlatRadio3,
-//            kitchenLengthEditText,
-//            kitchenWidthEditText,
-//            rampusLengthEditText,
-//            rampusWidthEditText,
-//            familyLengthEditText,
-//            familyWidthEditText,
-//            dinningLengthEditText,
-//            dinningWidthEditText,
-//            houseSizeEditText,
-//            bedroomNumbersEditText,
-//            MasterRoomDirectionCheckBox,
-//            coveredCarParkEditText,
-//            uncoveredCarParkEditText,
-//            kitchenDecorationRadioGroup,
-//            backyardSizeRadioGroup,
-//            backyardShapeRadioGroup,
-//            swimmingPoolRadioGroup,
-//            hasGasCheckBox,
-//            airConCheckBox,
-//            timberWarmerCheckBox,
-//            firePlaceCheckBox,
-//            timberCheckBox,
-//            alfrescoCheckBox,
-//            roadConditionRadioGroup,
-//            commuteRadioGroup,
-//            shoppingRadioGroup,
-//            catchmentRadioGroup,
-//            outBowCheckBox,
-//            roadOnFaceCheckBox,
-//            lowerThanRoadCheckBox,
-//            electricalTowerCheckBox
+            rampusRadioGroup.check(
+                when (it.houseShape.rampusSpace) {
+                    RAMPUS_SPACE.ABSENT -> R.id.rampusRadio1
+                    RAMPUS_SPACE.WITHOUT_DOOR -> R.id.rampusRadio2
+                    else -> R.id.rampusRadio3
+                }
+            )
+
+            grannyFlatRadioGroup.check(
+                when (it.houseShape.inLawSpace) {
+                    IN_LAW_SPACE.ABSENT -> R.id.grannyFlatRadio1
+                    IN_LAW_SPACE.WITHOUT_KITCHEN -> R.id.grannyFlatRadio2
+                    else -> R.id.grannyFlatRadio3
+                }
+            )
+
+            kitchenSizeResultTextView.text =
+                getString(R.string.square_meter_format, it.houseShape.kitchenSize.toString())
+            livingAreaSizeSumTextView.text =
+                getString(R.string.square_meter_format, it.houseShape.livingAreaSize.toString())
+
+            kitchenDecorationRadioGroup.check(
+                when (it.decoration.kitchenDecoration) {
+                    DECORATION_CONDITION.BROKEN -> R.id.kitchenDecorationRadio1
+                    DECORATION_CONDITION.OLD -> R.id.kitchenDecorationRadio2
+                    DECORATION_CONDITION.USABLE -> R.id.kitchenDecorationRadio3
+                    else -> R.id.kitchenDecorationRadio4
+                }
+            )
+
+            backyardSizeRadioGroup.check(
+                when (it.decoration.backYardSize) {
+                    BACK_YARD_SIZE.ABSENT -> R.id.backyardSizeRadio1
+                    BACK_YARD_SIZE.SMALL -> R.id.backyardSizeRadio2
+                    BACK_YARD_SIZE.MIDIUM -> R.id.backyardSizeRadio3
+                    else -> R.id.backyardSizeRadio4
+                }
+            )
+
+            backyardShapeRadioGroup.check(
+                when (it.decoration.backYardCondition) {
+                    BACK_YARD_CONDITION.BUSHES -> R.id.backyardShapeRadio1
+                    BACK_YARD_CONDITION.SLOPE -> R.id.backyardShapeRadio2
+                    BACK_YARD_CONDITION.STEP -> R.id.backyardShapeRadio3
+                    else -> R.id.backyardShapeRadio4
+                }
+            )
+
+            swimmingPoolRadioGroup.check(
+                when (it.decoration.swimmingPoolCondition) {
+                    SWIMMING_POOL_CONDITION.ABSENT -> R.id.swimmingPoolRadio1
+                    SWIMMING_POOL_CONDITION.BROKEN -> R.id.swimmingPoolRadio2
+                    SWIMMING_POOL_CONDITION.USABLE -> R.id.swimmingPoolRadio3
+                    else -> R.id.swimmingPoolRadio4
+                }
+            )
+
+            coveredCarParkEditText.setText(it.houseShape.coverdCarSpace.toString())
+            uncoveredCarParkEditText.setText(it.houseShape.driveWayCarSpace.toString())
+
+
+            hasGasCheckBox.isChecked = it.decoration.hasGasSupply
+            airConCheckBox.isChecked = it.decoration.hasAirCon
+            timberWarmerCheckBox.isChecked = it.decoration.hasFloorWarmer
+            firePlaceCheckBox.isChecked = it.decoration.hasFirePlace
+            timberCheckBox.isChecked = it.decoration.hasTimberFloor
+            alfrescoCheckBox.isChecked = it.decoration.hasAlfresco
+
+            outBowCheckBox.isChecked = it.houseLocation.hasOutOfBow
+            roadOnFaceCheckBox.isChecked = it.houseLocation.hasRoadOnFace
+            lowerThanRoadCheckBox.isChecked = it.houseLocation.hasLowerThanRoad
+            electricalTowerCheckBox.isChecked = it.houseLocation.hasElecTower
+
+            roadConditionRadioGroup.check(
+                when (it.houseLocation.roadCondition) {
+                    ROAD_CONDITION.MAIN_ROAD -> R.id.roadConditionRadio1
+                    ROAD_CONDITION.NORMAL_ROAD -> R.id.roadConditionRadio2
+                    ROAD_CONDITION.QUIET_ROAD -> R.id.roadConditionRadio3
+                    else -> R.id.roadConditionRadio4
+                }
+            )
+
+            commuteRadioGroup.check(
+                when (it.houseLocation.commute) {
+                    COMMUTE.TRAIN -> R.id.commuteRadio1
+                    COMMUTE.EXPRESS_BUS -> R.id.commuteRadio2
+                    COMMUTE.BUS -> R.id.commuteRadio3
+                    else -> R.id.commuteRadio4
+                }
+            )
+
+            shoppingRadioGroup.check(
+                when (it.houseLocation.shopping) {
+                    SHOPPING.MALL -> R.id.shoppingRadio1
+                    SHOPPING.VILLAGE -> R.id.shoppingRadio2
+                    SHOPPING.BUS -> R.id.shoppingRadio3
+                    else -> R.id.shoppingRadio4
+                }
+            )
+
+            catchmentRadioGroup.check(
+                when (it.houseLocation.catchment) {
+                    CATCHMENT.WEAK -> R.id.catchmentRadio1
+                    CATCHMENT.OK -> R.id.catchmentRadio2
+                    CATCHMENT.GOOD -> R.id.catchmentRadio3
+                    else -> R.id.catchmentRadio4
+                }
+            )
         })
     }
 

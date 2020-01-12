@@ -43,7 +43,7 @@ class InspectionRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = "${item.address}\n${item.houseShape.bedroomNumber} bedrooms, ${item.houseShape.landSize} m2"
+        holder.mIdView.text = "${item.address}\n${item.houseShape.bedroomNumber} bedrooms, ${item.houseShape.landSize} m\u00B2"
         holder.mContentView.text = item.calculateRank().toString()
 
         with(holder.mView) {
