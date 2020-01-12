@@ -12,7 +12,7 @@ import com.blackseal.propertyinspector.model.Inspection
 import com.blackseal.propertyinspector.ui.InspectionListFragment.OnListFragmentInteractionListener
 import com.blackseal.propertyinspector.ui.dummy.DummyContent.DummyItem
 
-import kotlinx.android.synthetic.main.fragment_inspection.view.*
+import kotlinx.android.synthetic.main.item_inspection.view.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -28,7 +28,7 @@ class InspectionRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyItem
+            val item = v.tag as Inspection
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
             mListener?.onListFragmentInteraction(item)
@@ -37,20 +37,22 @@ class InspectionRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_inspection, parent, false)
+            .inflate(R.layout.item_inspection, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.address
-        holder.mContentView.text = item.rank.toString()
+        holder.mIdView.text = "${item.address}\n${item.houseShape.bedroomNumber} bedrooms, ${item.houseShape.landSize} m2"
+        holder.mContentView.text = item.calculateRank().toString()
 
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
         }
     }
+
+
 
     override fun getItemCount(): Int = mValues.size
 

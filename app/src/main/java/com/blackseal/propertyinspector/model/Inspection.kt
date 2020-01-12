@@ -10,7 +10,6 @@ data class Inspection(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
     val address: String,
     val photo: String,
-    var rank: Int = 0,
     val isSold: Boolean,
     @Embedded
     val houseShape: HouseShape,
@@ -21,15 +20,15 @@ data class Inspection(
 
 ) {
     fun calculateRank(): Int {
-        rank =
-            60 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + when {
-                address.contains("castle hill", true) -> 10
-                address.contains("cherrybrook", true) -> 10
-                address.contains("pennant hill", true) -> 15
-                address.contains("baulkham hill", true) -> 5
-                else -> 0
-            }
-        return rank
+        return -12 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + calculateSuburbPreference()
+    }
+
+    private fun calculateSuburbPreference() = when {
+        address.contains("castle hill", true) -> 10
+        address.contains("cherrybrook", true) -> 10
+        address.contains("pennant hill", true) -> 15
+        address.contains("baulkham hill", true) -> 5
+        else -> 0
     }
 }
 

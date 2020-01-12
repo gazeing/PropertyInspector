@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.InspectionListFragment"
-        tools:listitem="@layout/fragment_inspection" />
+        tools:listitem="@layout/item_inspection" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

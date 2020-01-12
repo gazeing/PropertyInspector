@@ -19,4 +19,6 @@ interface InspectionListDAO {
     @Query("SELECT * FROM Inspection ORDER BY id DESC")
     fun getInspectionList(): LiveData<List<Inspection>>
 
+    @Query("SELECT * FROM Inspection WHERE id = :insId LIMIT 1")
+    fun getInspectionById(insId:String): LiveData<Inspection>
 }

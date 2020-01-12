@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.blackseal.propertyinspector.R
+import com.blackseal.propertyinspector.model.Inspection
 
 import com.blackseal.propertyinspector.ui.dummy.DummyContent
 import com.blackseal.propertyinspector.ui.dummy.DummyContent.DummyItem
@@ -91,7 +92,7 @@ class InspectionListFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListFragmentInteraction(item: Inspection?)
     }
 
 }

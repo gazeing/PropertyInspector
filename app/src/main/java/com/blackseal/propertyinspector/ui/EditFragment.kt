@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 
 import com.blackseal.propertyinspector.R
 import com.blackseal.propertyinspector.model.*
@@ -15,9 +16,11 @@ class EditFragment : Fragment() {
 
     companion object {
         fun newInstance() = EditFragment()
+        const val KEY_ID = "key_id"
     }
 
     private lateinit var viewModel: EditViewModel
+    private lateinit var viewList: List<View>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +32,6 @@ class EditFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EditViewModel::class.java)
-        // TODO: Use the ViewModel
 
         save_btn.setOnClickListener {
 
@@ -37,7 +39,6 @@ class EditFragment : Fragment() {
             val inspection = Inspection(
                 0,
                 addressEditText.text.toString(), "",
-                0,
                 false,
                 getHouseShape(),
                 getDecoration(),
@@ -48,7 +49,184 @@ class EditFragment : Fragment() {
             scrollView.smoothScrollTo(0, 0)
             viewModel.saveInspection(inspection)
         }
+
+        addViewToList()
+
+        arguments?.getString(KEY_ID)?.let { id ->
+            viewModel.getInspection(id)
+            lock()
+        }
+
+
+
+        observerInspection()
     }
+
+    private fun addViewToList() {
+        viewList = listOf<View>(
+            addressEditText,
+            landShapeRadio1,
+            landShapeRadio2,
+            landShapeRadio3,
+            landShapeRadio4,
+            MasterRoomLengthEditText,
+            MasterRoomWidthEditText,
+            masterRoomBathroomRadio1,
+            masterRoomBathroomRadio2,
+            masterRoomBathroomRadio3,
+            masterRoomBathroomRadio4,
+            masterRoomWardrobeRadio1,
+            masterRoomWardrobeRadio2,
+            masterRoomWardrobeRadio3,
+            masterRoomWardrobeRadio4,
+            rampusRadio1,
+            rampusRadio2,
+            rampusRadio3,
+            grannyFlatRadio1,
+            grannyFlatRadio2,
+            grannyFlatRadio3,
+            kitchenLengthEditText,
+            kitchenWidthEditText,
+            rampusLengthEditText,
+            rampusWidthEditText,
+            familyLengthEditText,
+            familyWidthEditText,
+            dinningLengthEditText,
+            dinningWidthEditText,
+            houseSizeEditText,
+            bedroomNumbersEditText,
+            MasterRoomDirectionCheckBox,
+            coveredCarParkEditText,
+            uncoveredCarParkEditText,
+            kitchenDecorationRadio1,
+            kitchenDecorationRadio2,
+            kitchenDecorationRadio3,
+            kitchenDecorationRadio4,
+            backyardSizeRadio1,
+            backyardSizeRadio2,
+            backyardSizeRadio3,
+            backyardSizeRadio4,
+            backyardShapeRadio1,
+            backyardShapeRadio2,
+            backyardShapeRadio3,
+            backyardShapeRadio4,
+            swimmingPoolRadio1,
+            swimmingPoolRadio2,
+            swimmingPoolRadio3,
+            swimmingPoolRadio4,
+            hasGasCheckBox,
+            airConCheckBox,
+            timberWarmerCheckBox,
+            firePlaceCheckBox,
+            timberCheckBox,
+            alfrescoCheckBox,
+            roadConditionRadio1,
+            roadConditionRadio2,
+            roadConditionRadio3,
+            roadConditionRadio4,
+            commuteRadio1,
+            commuteRadio2,
+            commuteRadio3,
+            commuteRadio4,
+            shoppingRadio1,
+            shoppingRadio2,
+            shoppingRadio3,
+            shoppingRadio4,
+            catchmentRadio1,
+            catchmentRadio2,
+            catchmentRadio3,
+            catchmentRadio4,
+            outBowCheckBox,
+            roadOnFaceCheckBox,
+            lowerThanRoadCheckBox,
+            electricalTowerCheckBox
+        )
+
+    }
+
+    fun lock() {
+        for (view in viewList) {
+            view.isEnabled = false
+        }
+    }
+
+    fun unlock() {
+        for (view in viewList) {
+            view.isEnabled = true
+        }
+    }
+
+    private fun observerInspection() {
+        viewModel.inspectionLiveData.observe(this, Observer {
+            addressEditText.setText(it.address)
+            landShapeRadioGroup.check(
+                when (it.houseShape.landShape) {
+                    LAND_SHAPE.SQUARE -> R.id.landShapeRadio1
+                    LAND_SHAPE.TRIANGLE -> R.id.landShapeRadio2
+                    LAND_SHAPE.AXE -> R.id.landShapeRadio3
+                    else -> R.id.landShapeRadio4
+                }
+            )
+            MasterRoomSizeResultTextView.text =
+                getString(R.string.square_meter_format, it.houseShape.masterRoomSize.toString())
+            bedroomNumbersEditText.setText(it.houseShape.bedroomNumber.toString())
+            masterRoomBathroomRadioGroup.check(
+                when (it.houseShape.masterRoomBathRoom) {
+                    DECORATION_CONDITION.BROKEN -> R.id.masterRoomBathroomRadio1
+                    DECORATION_CONDITION.OLD -> R.id.masterRoomBathroomRadio2
+                    DECORATION_CONDITION.USABLE -> R.id.masterRoomBathroomRadio3
+                    else -> R.id.masterRoomBathroomRadio4
+                }
+            )
+            masterRoomWardrobeRadioGroup.check(
+                when (it.houseShape.masterRoomWardrobe) {
+                    DECORATION_CONDITION.BROKEN -> R.id.masterRoomWardrobeRadio1
+                    DECORATION_CONDITION.OLD -> R.id.masterRoomWardrobeRadio2
+                    DECORATION_CONDITION.USABLE -> R.id.masterRoomWardrobeRadio3
+                    else -> R.id.masterRoomWardrobeRadio4
+                }
+            )
+
+//            rampusRadio1,
+//            rampusRadio2,
+//            rampusRadio3,
+//            grannyFlatRadio1,
+//            grannyFlatRadio2,
+//            grannyFlatRadio3,
+//            kitchenLengthEditText,
+//            kitchenWidthEditText,
+//            rampusLengthEditText,
+//            rampusWidthEditText,
+//            familyLengthEditText,
+//            familyWidthEditText,
+//            dinningLengthEditText,
+//            dinningWidthEditText,
+//            houseSizeEditText,
+//            bedroomNumbersEditText,
+//            MasterRoomDirectionCheckBox,
+//            coveredCarParkEditText,
+//            uncoveredCarParkEditText,
+//            kitchenDecorationRadioGroup,
+//            backyardSizeRadioGroup,
+//            backyardShapeRadioGroup,
+//            swimmingPoolRadioGroup,
+//            hasGasCheckBox,
+//            airConCheckBox,
+//            timberWarmerCheckBox,
+//            firePlaceCheckBox,
+//            timberCheckBox,
+//            alfrescoCheckBox,
+//            roadConditionRadioGroup,
+//            commuteRadioGroup,
+//            shoppingRadioGroup,
+//            catchmentRadioGroup,
+//            outBowCheckBox,
+//            roadOnFaceCheckBox,
+//            lowerThanRoadCheckBox,
+//            electricalTowerCheckBox
+        })
+    }
+
 
     private fun getHouseShape(): HouseShape {
         val landShape = when (landShapeRadioGroup.checkedRadioButtonId) {

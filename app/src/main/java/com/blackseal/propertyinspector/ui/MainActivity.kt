@@ -11,15 +11,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.blackseal.propertyinspector.R
+import com.blackseal.propertyinspector.model.Inspection
+import com.blackseal.propertyinspector.ui.EditFragment.Companion.KEY_ID
 import com.blackseal.propertyinspector.ui.dummy.DummyContent
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentInteractionListener {
-
-    companion object{
-      const  val KEY_INSPECTION_ID = "key_inspection_id"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +41,12 @@ class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentI
         }
     }
 
-    override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
+    override fun onListFragmentInteraction(item: Inspection?) {
         //do nothing
-
-        val bundle = bundleOf(KEY_INSPECTION_ID to item.hashCode())
-        getNavigationController().navigate(R.id.detailFragment, bundle)
+        item?.let {
+            val bundle = bundleOf(KEY_ID to item.id.toString())
+            getNavigationController().navigate(R.id.editFragment, bundle)
+        }
     }
 
     private fun getNavigationController(): NavController {

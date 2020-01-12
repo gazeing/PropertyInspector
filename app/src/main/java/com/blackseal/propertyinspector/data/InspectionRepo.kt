@@ -9,4 +9,7 @@ class InspectionRepo(val dao: InspectionListDAO) {
         withContext(Dispatchers.IO) { dao.insertInspection(inspection) }
 
     fun loadList() = dao.getInspectionList()
+
+
+    fun loadInspection(id:String) = dao.getInspectionById(id)
 }
