@@ -1,1089 +1,1112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/medium_space"
-        tools:context=".ui.EditFragment">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/photoImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:contentDescription="@string/house_photo"
-                android:src="@drawable/ic_launcher_background" />
-            <TextView
-                android:id="@+id/rankTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:textSize="@dimen/headlindText"
-                android:layout_marginRight="@dimen/large_space"
-                tools:text = "160.4"/>
-        </FrameLayout>
-
-
-
-        <TextView
-            android:id="@+id/addressTextView"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/address" />
-
-        <EditText
-            android:id="@+id/addressEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address"
-            android:inputType="textPostalAddress" />
-
-        <TextView
-            android:id="@+id/houseTypeTextView"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/house_type" />
-
-        <TextView
-            android:id="@+id/houseSizeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/house_size" />
-
-        <EditText
-            android:id="@+id/houseSizeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/house_size"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/landShapeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/land_shape" />
-
-        <RadioGroup
-            android:id="@+id/landShapeRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/landShapeRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/square" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/landShapeRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/triangle" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/landShapeRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/axe" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/landShapeRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ladder" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/bedroomNumbersTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bedroom_numbers" />
-
-        <EditText
-            android:id="@+id/bedroomNumbersEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bedroom_numbers"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/MasterRoomSizeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/master_room_size" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/MasterRoomLengthEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/length"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/multiply"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/MasterRoomWidthEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/width"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/equal"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:id="@+id/MasterRoomSizeResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 m2" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/MasterRoomBathroomTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/master_room_bathroom" />
-
-        <RadioGroup
-            android:id="@+id/masterRoomBathroomRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomBathroomRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/broken" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomBathroomRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/old" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomBathroomRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usable" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomBathroomRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_decoration" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/masterRoomWardrobeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/master_room_wardrobe" />
-
-        <RadioGroup
-            android:id="@+id/masterRoomWardrobeRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomWardrobeRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/broken" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomWardrobeRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/old" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomWardrobeRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usable" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/masterRoomWardrobeRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_decoration" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/MasterRoomDirectionTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/master_room_direction" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/MasterRoomDirectionCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
+            android:orientation="vertical"
             android:padding="@dimen/medium_space"
-            android:text="@string/face_northwest" />
+            tools:context=".ui.EditFragment">
 
-        <TextView
-            android:id="@+id/rampusTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rampus_or_study" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <RadioGroup
-            android:id="@+id/rampusRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
+                <ImageView
+                    android:id="@+id/photoImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:contentDescription="@string/house_photo"
+                    android:src="@drawable/ic_launcher_background" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rampusRadio1"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/rankTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/large_space"
+                    android:textSize="@dimen/headlindText"
+                    tools:text="160.4" />
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/addressTextView"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/absent" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rampusRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/without_door" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rampusRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/with_door" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/grannyFlatTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/grannyFlat" />
-
-
-        <RadioGroup
-            android:id="@+id/grannyFlatRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/grannyFlatRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/absent" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/grannyFlatRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/without_kitchen" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/grannyFlatRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/with_kitchen" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/kitchenSizeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/kitchen_size" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:text="@string/address" />
 
             <EditText
-                android:id="@+id/kitchenLengthEditText"
-                android:layout_width="wrap_content"
+                android:id="@+id/addressEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/length"
-                android:inputType="numberDecimal" />
+                android:hint="@string/address"
+                android:inputType="textPostalAddress" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/houseTypeTextView"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/multiply"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/kitchenWidthEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/width"
-                android:inputType="numberDecimal" />
+                android:text="@string/house_type" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/equal"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:id="@+id/kitchenSizeResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 m2" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/livingAreaTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/living_area" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+                android:id="@+id/houseSizeTextView"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/huge_space"
-                android:text="@string/rampus" />
+                android:text="@string/house_size" />
 
             <EditText
-                android:id="@+id/rampusLengthEditText"
-                android:layout_width="wrap_content"
+                android:id="@+id/houseSizeEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/length"
+                android:hint="@string/house_size"
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/multiply"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/rampusWidthEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/width"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/equal"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:id="@+id/rampusSizeResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 m2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+                android:id="@+id/landShapeTextView"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/huge_space"
-                android:text="@string/dinning" />
+                android:text="@string/land_shape" />
 
-            <EditText
-                android:id="@+id/dinningLengthEditText"
+            <RadioGroup
+                android:id="@+id/landShapeRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/length"
-                android:inputType="numberDecimal" />
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/landShapeRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/square" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/landShapeRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/triangle" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/landShapeRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/axe" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/landShapeRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ladder" />
+
+            </RadioGroup>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/multiply"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/dinningWidthEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/width"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/equal"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:id="@+id/dinningSizeResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 m2" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+                android:id="@+id/bedroomNumbersTextView"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_space"
-                android:layout_marginRight="@dimen/medium_space"
-                android:text="@string/plus" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_space"
-                android:text="@string/family" />
+                android:text="@string/bedroom_numbers" />
 
             <EditText
-                android:id="@+id/familyLengthEditText"
-                android:layout_width="wrap_content"
+                android:id="@+id/bedroomNumbersEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/length"
-                android:inputType="numberDecimal" />
+                android:hint="@string/bedroom_numbers"
+                android:inputType="number" />
 
             <TextView
+                android:id="@+id/MasterRoomSizeTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/master_room_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/MasterRoomLengthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/length"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/multiply"
+                    android:textSize="@dimen/largeText" />
+
+                <EditText
+                    android:id="@+id/MasterRoomWidthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/width"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/equal"
+                    android:textSize="@dimen/largeText" />
+
+                <TextView
+                    android:id="@+id/MasterRoomSizeResultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20 m2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/MasterRoomBathroomTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/master_room_bathroom" />
+
+            <RadioGroup
+                android:id="@+id/masterRoomBathroomRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/multiply"
-                android:textSize="@dimen/largeText" />
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomBathroomRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/broken" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomBathroomRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/old" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomBathroomRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usable" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomBathroomRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_decoration" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/masterRoomWardrobeTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/master_room_wardrobe" />
+
+            <RadioGroup
+                android:id="@+id/masterRoomWardrobeRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomWardrobeRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/broken" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomWardrobeRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/old" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomWardrobeRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usable" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/masterRoomWardrobeRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_decoration" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/MasterRoomDirectionTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/master_room_direction" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/MasterRoomDirectionCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/face_northwest" />
+
+            <TextView
+                android:id="@+id/rampusTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rampus_or_study" />
+
+            <RadioGroup
+                android:id="@+id/rampusRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rampusRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/absent" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rampusRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/without_door" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rampusRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/with_door" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/grannyFlatTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/grannyFlat" />
+
+
+            <RadioGroup
+                android:id="@+id/grannyFlatRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/grannyFlatRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/absent" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/grannyFlatRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/without_kitchen" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/grannyFlatRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/with_kitchen" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/kitchenSizeTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/kitchen_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/kitchenLengthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/length"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/multiply"
+                    android:textSize="@dimen/largeText" />
+
+                <EditText
+                    android:id="@+id/kitchenWidthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/width"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/equal"
+                    android:textSize="@dimen/largeText" />
+
+                <TextView
+                    android:id="@+id/kitchenSizeResultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20 m2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/livingAreaTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/living_area" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/huge_space"
+                    android:text="@string/rampus" />
+
+                <EditText
+                    android:id="@+id/rampusLengthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/length"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/multiply"
+                    android:textSize="@dimen/largeText" />
+
+                <EditText
+                    android:id="@+id/rampusWidthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/width"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/equal"
+                    android:textSize="@dimen/largeText" />
+
+                <TextView
+                    android:id="@+id/rampusSizeResultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20 m2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/huge_space"
+                    android:text="@string/dinning" />
+
+                <EditText
+                    android:id="@+id/dinningLengthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/length"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/multiply"
+                    android:textSize="@dimen/largeText" />
+
+                <EditText
+                    android:id="@+id/dinningWidthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/width"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/equal"
+                    android:textSize="@dimen/largeText" />
+
+                <TextView
+                    android:id="@+id/dinningSizeResultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20 m2" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/medium_space"
+                    android:layout_marginRight="@dimen/medium_space"
+                    android:text="@string/plus" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/medium_space"
+                    android:text="@string/family" />
+
+                <EditText
+                    android:id="@+id/familyLengthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/length"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/multiply"
+                    android:textSize="@dimen/largeText" />
+
+                <EditText
+                    android:id="@+id/familyWidthEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/width"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/equal"
+                    android:textSize="@dimen/largeText" />
+
+                <TextView
+                    android:id="@+id/familySizeResultTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20 m2" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/medium_space"
+                    android:layout_weight="1"
+                    android:text="@string/sum" />
+
+                <TextView
+                    android:id="@+id/livingAreaSizeSumTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:textSize="@dimen/largeText"
+                    tools:text="63 m2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/coveredCarParkTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/covered_carpark" />
 
             <EditText
-                android:id="@+id/familyWidthEditText"
+                android:id="@+id/coveredCarParkEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/width"
-                android:inputType="numberDecimal" />
+                android:hint="@string/carpark_number"
+                android:inputType="number" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/equal"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:id="@+id/familySizeResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20 m2" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
+                android:id="@+id/uncoveredCarParkTextView"
                 style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/uncovered_carpark" />
+
+            <EditText
+                android:id="@+id/uncoveredCarParkEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_space"
-                android:layout_weight="1"
-                android:text="@string/sum" />
+                android:hint="@string/carpark_number"
+                android:inputType="number" />
 
             <TextView
-                android:id="@+id/livingAreaSizeSumTextView"
+                android:id="@+id/decorationTextView"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/decoration" />
+
+            <TextView
+                android:id="@+id/hasGasTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/has_gas" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/hasGasCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/has_gas" />
+
+            <TextView
+                android:id="@+id/kitchenDecorationTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/kitchen_decoration" />
+
+            <RadioGroup
+                android:id="@+id/kitchenDecorationRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_space"
-                android:textSize="@dimen/largeText"
-                tools:text="63 m2" />
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/kitchenDecorationRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/broken" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/kitchenDecorationRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/old" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/kitchenDecorationRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usable" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/kitchenDecorationRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_decoration" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/additionalFacilityTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/additional_facility" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/airConCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/aircon" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/timberWarmerCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/timber_warmer" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/timberCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/timber" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/firePlaceCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/fireplace" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/alfrescoCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/alfresco" />
+
+            <TextView
+                android:id="@+id/backyardSizeTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/backyard_size" />
+
+            <RadioGroup
+                android:id="@+id/backyardSizeRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardSizeRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/absent" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardSizeRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/small" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardSizeRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/medium" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardSizeRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/large" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/backyardShapeTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/backyard_shape" />
+
+            <RadioGroup
+                android:id="@+id/backyardShapeRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardShapeRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/bushes" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardShapeRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/slope" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardShapeRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/steps" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/backyardShapeRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flat" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/swimmingPoolTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/swimming_pool" />
+
+            <RadioGroup
+                android:id="@+id/swimmingPoolRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/swimmingPoolRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/absent" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/swimmingPoolRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/broken" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/swimmingPoolRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usable" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/swimmingPoolRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_decoration" />
+
+            </RadioGroup>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
+
+            <TextView
+                android:id="@+id/roadConditionTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/road_condition" />
+
+            <RadioGroup
+                android:id="@+id/roadConditionRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/roadConditionRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/main_road" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/roadConditionRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/normal_road" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/roadConditionRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quiet_road" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/roadConditionRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_through_road" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/commuteTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/commute" />
+
+            <RadioGroup
+                android:id="@+id/commuteRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/commuteRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/train" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/commuteRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/express_bus" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/commuteRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bus" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/commuteRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drive_only" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/shoppingTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:text="@string/shopping" />
+
+            <RadioGroup
+                android:id="@+id/shoppingRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/shoppingRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/mall" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/shoppingRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/village" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/shoppingRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bus_to_mall" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/shoppingRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drive_only" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/catchmentTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:text="@string/catchment" />
+
+            <RadioGroup
+                android:id="@+id/catchmentRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_space">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/catchmentRadio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/poor_catchment" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/catchmentRadio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/ok_catchment" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/catchmentRadio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good_catchment" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/catchmentRadio4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/great_catchment" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/fengshuiTextView"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:text="@string/fengshui" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/outBowCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/out_of_bow" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/roadOnFaceCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/road_on_face" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/lowerThanRoadCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/lower_than_road" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/electricalTowerCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/medium_space"
+                android:text="@string/elec_tower" />
+
+
+            <FrameLayout
+                android:id="@+id/save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_space"
+                android:layout_marginBottom="@dimen/large_space"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/buttonTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/medium_space"
+                    android:text="@string/calculate_and_save"
+                    android:textColor="@color/white" />
+
+            </FrameLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/coveredCarParkTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/covered_carpark" />
-
-        <EditText
-            android:id="@+id/coveredCarParkEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/carpark_number"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/uncoveredCarParkTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/uncovered_carpark" />
-
-        <EditText
-            android:id="@+id/uncoveredCarParkEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/carpark_number"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/decorationTextView"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/decoration" />
-
-        <TextView
-            android:id="@+id/hasGasTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/has_gas" />
-
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/hasGasCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/has_gas" />
-        <TextView
-            android:id="@+id/kitchenDecorationTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/kitchen_decoration" />
-
-        <RadioGroup
-            android:id="@+id/kitchenDecorationRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/kitchenDecorationRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/broken" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/kitchenDecorationRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/old" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/kitchenDecorationRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usable" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/kitchenDecorationRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_decoration" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/additionalFacilityTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/additional_facility" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/airConCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/aircon" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/timberWarmerCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/timber_warmer" />
-
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/timberCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/timber" />
-
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/firePlaceCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/fireplace" />
-
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/alfrescoCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/alfresco" />
-
-        <TextView
-            android:id="@+id/backyardSizeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/backyard_size" />
-
-        <RadioGroup
-            android:id="@+id/backyardSizeRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardSizeRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/absent" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardSizeRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/small" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardSizeRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/medium" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardSizeRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/large" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/backyardShapeTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/backyard_shape" />
-
-        <RadioGroup
-            android:id="@+id/backyardShapeRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardShapeRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/bushes" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardShapeRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/slope" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardShapeRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/steps" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/backyardShapeRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flat" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/swimmingPoolTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/swimming_pool" />
-
-        <RadioGroup
-            android:id="@+id/swimmingPoolRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/swimmingPoolRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/absent" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/swimmingPoolRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/broken" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/swimmingPoolRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usable" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/swimmingPoolRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_decoration" />
-
-        </RadioGroup>
-
-        <TextView
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/location" />
-
-        <TextView
-        android:id="@+id/roadConditionTextView"
-        style="@style/TextAppearance.AppCompat.Body2"
+    <FrameLayout
+        android:id="@+id/progressCircularLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/road_condition" />
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white">
 
-        <RadioGroup
-            android:id="@+id/roadConditionRadioGroup"
+        <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/roadConditionRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/main_road" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/roadConditionRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/normal_road" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/roadConditionRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quiet_road" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/roadConditionRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_through_road" />
-
-        </RadioGroup>
-
-        <TextView
-        android:id="@+id/commuteTextView"
-        style="@style/TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/commute" />
-
-        <RadioGroup
-            android:id="@+id/commuteRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/commuteRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/train" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/commuteRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/express_bus" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/commuteRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bus" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/commuteRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drive_only" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/shoppingTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:text="@string/shopping" />
-
-        <RadioGroup
-            android:id="@+id/shoppingRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/shoppingRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/mall" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/shoppingRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/village" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/shoppingRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bus_to_mall" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/shoppingRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drive_only" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/catchmentTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:text="@string/catchment" />
-
-        <RadioGroup
-            android:id="@+id/catchmentRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/medium_space">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/catchmentRadio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/poor_catchment" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/catchmentRadio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/ok_catchment" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/catchmentRadio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/good_catchment" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/catchmentRadio4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/great_catchment" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/fengshuiTextView"
-            style="@style/TextAppearance.AppCompat.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:text="@string/fengshui" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/outBowCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/out_of_bow" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/roadOnFaceCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/road_on_face" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/lowerThanRoadCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/lower_than_road" />
-
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/electricalTowerCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="@dimen/medium_space"
-            android:text="@string/elec_tower" />
-
-
-        <FrameLayout
-            android:id="@+id/save_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_space"
-            android:layout_marginBottom="@dimen/large_space"
-            android:background="@color/colorPrimary">
-            <TextView
-                android:id="@+id/buttonTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:layout_margin="@dimen/medium_space"
-                android:text="@string/calculate_and_save"/>
-
-        </FrameLayout>
-
-    </LinearLayout>
-</ScrollView>
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/huge_space"
+            android:indeterminate="true" />
+    </FrameLayout>
+</FrameLayout>

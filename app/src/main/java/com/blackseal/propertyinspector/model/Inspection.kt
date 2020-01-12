@@ -20,7 +20,7 @@ data class Inspection(
 
 ) {
     fun calculateRank(): Int {
-        return -12 + houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + calculateSuburbPreference()
+        return 108 + (houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + calculateSuburbPreference())*23/43
     }
 
     private fun calculateSuburbPreference() = when {
@@ -177,8 +177,8 @@ enum class RAMPUS_SPACE {
 
 enum class IN_LAW_SPACE {
     ABSENT,
-    WITHOUT_KITCHEN,
-    WITH_KITCHEN
+    ATTACHED,
+    SEPARATED
 }
 
 
@@ -186,14 +186,21 @@ class HouseShape(
     val landSize: Int,
     val landShape: LAND_SHAPE,
     val bedroomNumber: Int,
-    val masterRoomSize: Int,
+    val masterRoomLength: Float,
+    val masterRoomWidth: Float,
     val masterRoomBathRoom: DECORATION_CONDITION,
     val masterRoomWardrobe: DECORATION_CONDITION,
     val isMasterRoomFacingNorthWest: Boolean,
     val rampusSpace: RAMPUS_SPACE,
     val inLawSpace: IN_LAW_SPACE,
-    val kitchenSize: Int,
-    val livingAreaSize: Int,
+    val kitchenLength: Float,
+    val kitchenWidth: Float,
+    val rampusLength: Float,
+    val rampusWidth: Float,
+    val familyRoomLength: Float,
+    val familyRoomWidth: Float,
+    val dinningRoomLength: Float,
+    val dinningRoomWidth: Float,
     val coverdCarSpace: Int,
     val driveWayCarSpace: Int
 ) {
@@ -204,7 +211,9 @@ class HouseShape(
             LAND_SHAPE.TRIANGLE -> -5
             LAND_SHAPE.AXE -> -5
             LAND_SHAPE.LADDER -> -3
-        } + masterRoomSize + (bedroomNumber - 4) * 10 + when (masterRoomBathRoom) {
+        } + ((masterRoomLength * masterRoomWidth) / 2
+                + (kitchenLength * kitchenWidth) / 2
+                + calculateLivingAreaSize()/3).toInt() + (bedroomNumber - 4) * 7 + when (masterRoomBathRoom) {
             DECORATION_CONDITION.BROKEN -> -3
             DECORATION_CONDITION.OLD -> -2
             DECORATION_CONDITION.USABLE -> 0
@@ -215,14 +224,18 @@ class HouseShape(
             DECORATION_CONDITION.USABLE -> 0
             DECORATION_CONDITION.NEW -> 1
         } + if (isMasterRoomFacingNorthWest) 0 else -2 + when (rampusSpace) {
-            RAMPUS_SPACE.ABSENT -> -5
+            RAMPUS_SPACE.ABSENT -> -2
             RAMPUS_SPACE.WITHOUT_DOOR -> 0
             RAMPUS_SPACE.WITH_DOOR -> 2
         } + when (inLawSpace) {
             IN_LAW_SPACE.ABSENT -> 0
-            IN_LAW_SPACE.WITHOUT_KITCHEN -> 5
-            IN_LAW_SPACE.WITH_KITCHEN -> 10
-        } + kitchenSize + livingAreaSize + (coverdCarSpace - 1) * 5 + driveWayCarSpace * 2
+            IN_LAW_SPACE.ATTACHED -> 10
+            IN_LAW_SPACE.SEPARATED -> 15
+        } + (coverdCarSpace - 1) * 5 + driveWayCarSpace * 2
 
+    }
+
+    fun calculateLivingAreaSize(): Float {
+        return (rampusLength * rampusWidth) + (dinningRoomLength * dinningRoomWidth) + (familyRoomLength * familyRoomWidth)
     }
 }

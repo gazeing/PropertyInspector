@@ -25,8 +25,8 @@
     <string name="rampus">Rampus</string>
     <string name="rampus_or_study">Rampus or Study</string>
     <string name="absent">Absent</string>
-    <string name="without_kitchen">Without Kitchen</string>
-    <string name="with_kitchen">With Kitchen</string>
+    <string name="without_kitchen">Attached</string>
+    <string name="with_kitchen">Separated</string>
     <string name="without_door">Without Door</string>
     <string name="with_door">With Door</string>
     <string name="grannyFlat">Granny Flat/ In-law accommodation</string>

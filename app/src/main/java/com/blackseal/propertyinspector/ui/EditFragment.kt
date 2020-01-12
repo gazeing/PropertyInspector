@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.Observer
 
 import com.blackseal.propertyinspector.R
@@ -40,6 +44,7 @@ class EditFragment : Fragment() {
         addViewToList()
 
         arguments?.getString(KEY_ID)?.let { id ->
+            loading()
             viewModel.getInspection(id)
             lock()
         }
@@ -63,6 +68,14 @@ class EditFragment : Fragment() {
         rankTextView.text = inspection.calculateRank().toString()
         scrollView.smoothScrollTo(0, 0)
         viewModel.saveInspection(inspection)
+    }
+
+    fun loading() {
+        progressCircularLayout.visibility = VISIBLE
+    }
+
+    fun loaded() {
+        progressCircularLayout.visibility = GONE
     }
 
     private fun addViewToList() {
@@ -169,7 +182,9 @@ class EditFragment : Fragment() {
 
     private fun observerInspection() {
         viewModel.inspectionLiveData.observe(this, Observer {
+            loaded()
             addressEditText.setText(it.address)
+            houseSizeEditText.setText(it.houseShape.landSize.toString())
             landShapeRadioGroup.check(
                 when (it.houseShape.landShape) {
                     LAND_SHAPE.SQUARE -> R.id.landShapeRadio1
@@ -178,8 +193,14 @@ class EditFragment : Fragment() {
                     else -> R.id.landShapeRadio4
                 }
             )
-            MasterRoomSizeResultTextView.text =
-                getString(R.string.square_meter_format, it.houseShape.masterRoomSize.toString())
+            updateSizeView(
+                it.houseShape.masterRoomLength,
+                it.houseShape.masterRoomWidth,
+                MasterRoomLengthEditText,
+                MasterRoomWidthEditText,
+                MasterRoomSizeResultTextView
+            )
+
             bedroomNumbersEditText.setText(it.houseShape.bedroomNumber.toString())
             masterRoomBathroomRadioGroup.check(
                 when (it.houseShape.masterRoomBathRoom) {
@@ -210,15 +231,49 @@ class EditFragment : Fragment() {
             grannyFlatRadioGroup.check(
                 when (it.houseShape.inLawSpace) {
                     IN_LAW_SPACE.ABSENT -> R.id.grannyFlatRadio1
-                    IN_LAW_SPACE.WITHOUT_KITCHEN -> R.id.grannyFlatRadio2
+                    IN_LAW_SPACE.ATTACHED -> R.id.grannyFlatRadio2
                     else -> R.id.grannyFlatRadio3
                 }
             )
 
-            kitchenSizeResultTextView.text =
-                getString(R.string.square_meter_format, it.houseShape.kitchenSize.toString())
+            updateSizeView(
+                it.houseShape.kitchenLength,
+                it.houseShape.kitchenWidth,
+                kitchenLengthEditText,
+                kitchenWidthEditText,
+                kitchenSizeResultTextView
+            )
+
+            updateSizeView(
+                it.houseShape.rampusLength,
+                it.houseShape.rampusWidth,
+                rampusLengthEditText,
+                rampusWidthEditText,
+                rampusSizeResultTextView
+            )
+
+            updateSizeView(
+                it.houseShape.dinningRoomLength,
+                it.houseShape.dinningRoomWidth,
+                dinningLengthEditText,
+                dinningWidthEditText,
+                dinningSizeResultTextView
+            )
+
+            updateSizeView(
+                it.houseShape.familyRoomLength,
+                it.houseShape.familyRoomWidth,
+                familyLengthEditText,
+                familyWidthEditText,
+                familySizeResultTextView
+            )
+
+
             livingAreaSizeSumTextView.text =
-                getString(R.string.square_meter_format, it.houseShape.livingAreaSize.toString())
+                getString(
+                    R.string.square_meter_format,
+                    it.houseShape.calculateLivingAreaSize().toString()
+                )
 
             kitchenDecorationRadioGroup.check(
                 when (it.decoration.kitchenDecoration) {
@@ -310,6 +365,22 @@ class EditFragment : Fragment() {
         })
     }
 
+    fun updateSizeView(
+        length: Float,
+        width: Float,
+        lengthEdit: EditText,
+        widthEdit: EditText,
+        sizeText: TextView
+    ) {
+        lengthEdit.setText(length.toString())
+        widthEdit.setText(width.toString())
+        sizeText.text =
+            getString(
+                R.string.square_meter_format,
+                (length * width).toString()
+            )
+    }
+
 
     private fun getHouseShape(): HouseShape {
         val landShape = when (landShapeRadioGroup.checkedRadioButtonId) {
@@ -346,8 +417,8 @@ class EditFragment : Fragment() {
 
         val inLawSpace = when (grannyFlatRadioGroup.checkedRadioButtonId) {
             R.id.grannyFlatRadio1 -> IN_LAW_SPACE.ABSENT
-            R.id.grannyFlatRadio2 -> IN_LAW_SPACE.WITHOUT_KITCHEN
-            else -> IN_LAW_SPACE.WITH_KITCHEN
+            R.id.grannyFlatRadio2 -> IN_LAW_SPACE.ATTACHED
+            else -> IN_LAW_SPACE.SEPARATED
         }
 
         val kitchenSize =
@@ -383,14 +454,21 @@ class EditFragment : Fragment() {
             houseSizeEditText.text.toString().toInt(),
             landShape,
             bedroomNumbersEditText.text.toString().toInt(),
-            masterRoomSize.toInt(),
+            MasterRoomLengthEditText.text.toString().toFloat(),
+            MasterRoomWidthEditText.text.toString().toFloat(),
             masterRoomBathRoom,
             masterRoomWardrobe,
             MasterRoomDirectionCheckBox.isChecked,
             rampusSpace,
             inLawSpace,
-            kitchenSize.toInt(),
-            livingSize,
+            kitchenLengthEditText.text.toString().toFloat(),
+            kitchenWidthEditText.text.toString().toFloat(),
+            (rampusLengthEditText.text.toString().toFloatOrNull() ?: 0f),
+            (rampusWidthEditText.text.toString().toFloatOrNull() ?: 0f),
+            (dinningLengthEditText.text.toString().toFloatOrNull() ?: 0f),
+            (dinningWidthEditText.text.toString().toFloatOrNull() ?: 0f),
+            (familyLengthEditText.text.toString().toFloatOrNull() ?: 0f),
+            (familyWidthEditText.text.toString().toFloatOrNull() ?: 0f),
             coveredCarParkEditText.text.toString().toInt(),
             uncoveredCarParkEditText.text.toString().toInt()
 
