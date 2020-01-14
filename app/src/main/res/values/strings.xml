@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PropertyInspector</string>
     <string name="action_settings">Settings</string>
+    <string name="action_export">Export</string>
     <string name="house_photo">The photo of House</string>
     <string name="address">Address</string>
     <string name="house_type">House Type</string>
@@ -91,4 +92,7 @@
     <string name="master_room_wardrobe">Master room wardrobe</string>
     <string name="square_meter_format">%s m\u00B2</string>
     <string name="edit">Edit</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="email">Email address</string>
 </resources>
