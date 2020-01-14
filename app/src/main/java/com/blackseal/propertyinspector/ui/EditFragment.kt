@@ -1,8 +1,8 @@
 package com.blackseal.propertyinspector.ui
 
-import androidx.lifecycle.ViewModelProviders
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -10,17 +10,26 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProviders
 import com.blackseal.propertyinspector.R
 import com.blackseal.propertyinspector.model.*
+import com.google.android.gms.common.api.Status
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.AutocompleteActivity
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import kotlinx.android.synthetic.main.edit_fragment.*
+
 
 class EditFragment : Fragment() {
 
     companion object {
         fun newInstance() = EditFragment()
         const val KEY_ID = "key_id"
+        const val AUTOCOMPLETE_REQUEST_CODE = 1
     }
 
     private lateinit var viewModel: EditViewModel
@@ -49,12 +58,44 @@ class EditFragment : Fragment() {
             lock()
         }
 
-
+        addressEditText.setOnClickListener {
+            startAutoComplete()
+        }
 
         observerInspection()
     }
 
-    fun onSave() {
+    private fun startAutoComplete() {
+        val fields: List<Place.Field> =
+            listOf(Place.Field.ID, Place.Field.NAME)
+
+// Start the autocomplete intent.
+        // Start the autocomplete intent.
+        val intent = Autocomplete.IntentBuilder(
+            AutocompleteActivityMode.OVERLAY, fields
+        ).setTypeFilter(TypeFilter.ADDRESS)
+            .setCountry("AU")
+            .build(requireContext())
+        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            when (resultCode) {
+                RESULT_OK -> {
+                    val place = Autocomplete.getPlaceFromIntent(data!!)
+                    addressEditText.setText(place.address)
+                }
+                AutocompleteActivity.RESULT_ERROR -> { // TODO: Handle the error.
+                    val status: Status = Autocomplete.getStatusFromIntent(data!!)
+                }
+                else -> { // The user canceled the operation.
+                }
+            }
+        }
+    }
+
+    private fun onSave() {
 
         val inspection = Inspection(
             0,
@@ -70,11 +111,11 @@ class EditFragment : Fragment() {
         viewModel.saveInspection(inspection)
     }
 
-    fun loading() {
+    private fun loading() {
         progressCircularLayout.visibility = VISIBLE
     }
 
-    fun loaded() {
+    private fun loaded() {
         progressCircularLayout.visibility = GONE
     }
 

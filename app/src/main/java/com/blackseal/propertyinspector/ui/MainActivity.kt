@@ -14,9 +14,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.blackseal.propertyinspector.BuildConfig
 import com.blackseal.propertyinspector.R
 import com.blackseal.propertyinspector.model.Inspection
 import com.blackseal.propertyinspector.ui.EditFragment.Companion.KEY_ID
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentI
 
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var view: EditText
+    lateinit var placesClient:PlacesClient
+
     val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,9 @@ class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentI
         viewModel.inspectionListLiveData.observe(this, Observer {
             sendEmail(view.text.toString(), gson.toJson(it))
         })
+
+        Places.initialize(this, BuildConfig.PLACE_KEY)
+        placesClient = Places.createClient(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,6 +60,10 @@ class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentI
             R.id.action_export -> exportProperty()
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun exportProperty(): Boolean {
