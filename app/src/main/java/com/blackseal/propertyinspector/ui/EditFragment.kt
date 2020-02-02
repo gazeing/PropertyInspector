@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.blackseal.propertyinspector.R
+import com.blackseal.propertyinspector.data.Prefs
+import com.blackseal.propertyinspector.data.RankCalculator
+import com.blackseal.propertyinspector.data.calculateLivingAreaSize
 import com.blackseal.propertyinspector.model.*
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.model.Place
@@ -106,7 +109,9 @@ class EditFragment : Fragment() {
             getLocation()
 
         )
-        rankTextView.text = inspection.calculateRank().toString()
+        val calculator =
+            RankCalculator(Prefs(this.requireActivity().applicationContext), inspection)
+        rankTextView.text = calculator.calculateRank().toString()
         scrollView.smoothScrollTo(0, 0)
         viewModel.saveInspection(inspection)
     }

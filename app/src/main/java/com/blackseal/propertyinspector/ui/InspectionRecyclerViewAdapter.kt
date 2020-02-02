@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.blackseal.propertyinspector.R
+import com.blackseal.propertyinspector.data.Prefs
+import com.blackseal.propertyinspector.data.RankCalculator
 import com.blackseal.propertyinspector.model.Inspection
 
 
@@ -43,15 +45,16 @@ class InspectionRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = "${item.address}\n${item.houseShape.bedroomNumber} bedrooms, ${item.houseShape.landSize} m\u00B2"
-        holder.mContentView.text = item.calculateRank().toString()
+        holder.mIdView.text =
+            "${item.address}\n${item.houseShape.bedroomNumber} bedrooms, ${item.houseShape.landSize} m\u00B2"
+        val calculator = RankCalculator(Prefs(holder.mContentView.context), item)
+        holder.mContentView.text = calculator.calculateRank().toString()
 
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
         }
     }
-
 
 
     override fun getItemCount(): Int = mValues.size

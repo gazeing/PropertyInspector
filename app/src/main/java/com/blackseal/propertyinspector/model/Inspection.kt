@@ -19,17 +19,9 @@ data class Inspection(
     val houseLocation: HouseLocation
 
 ) {
-    fun calculateRank(): Int {
-        return 108 + (houseLocation.calculateRank() + decoration.calculateRank() + houseShape.calculateRank() + calculateSuburbPreference())*23/43
-    }
 
-    private fun calculateSuburbPreference() = when {
-        address.contains("castle hill", true) -> 10
-        address.contains("cherrybrook", true) -> 10
-        address.contains("pennant hill", true) -> 15
-        address.contains("baulkham hill", true) -> 5
-        else -> 0
-    }
+
+
 }
 
 enum class ROAD_CONDITION {
@@ -71,29 +63,7 @@ data class HouseLocation(
     val hasLowerThanRoad: Boolean,
     val hasElecTower: Boolean
 ) {
-    fun calculateRank(): Int {
-        return if (hasElecTower) -100 else 0 + if (hasLowerThanRoad) -20 else 0 + if (hasRoadOnFace) -3 else 0 + if (hasOutOfBow) -3 else 0 + when (roadCondition) {
-            ROAD_CONDITION.MAIN_ROAD -> -10
-            ROAD_CONDITION.NORMAL_ROAD -> -2
-            ROAD_CONDITION.QUIET_ROAD -> 0
-            ROAD_CONDITION.NO_THROUGH_ROAD -> 3
-        } + when (commute) {
-            COMMUTE.TRAIN -> 5
-            COMMUTE.EXPRESS_BUS -> 4
-            COMMUTE.BUS -> 0
-            COMMUTE.DRIVE_ONLY -> -5
-        } + when (shopping) {
-            SHOPPING.MALL -> 10
-            SHOPPING.VILLAGE -> 4
-            SHOPPING.BUS -> 0
-            SHOPPING.DRIVE_ONLY -> -5
-        } + when (catchment) {
-            CATCHMENT.WEAK -> -5
-            CATCHMENT.OK -> 0
-            CATCHMENT.GOOD -> 5
-            CATCHMENT.GREAT -> 10
-        }
-    }
+
 }
 
 enum class DECORATION_CONDITION {
@@ -136,30 +106,7 @@ class Decoration(
     val backYardCondition: BACK_YARD_CONDITION,
     val swimmingPoolCondition: SWIMMING_POOL_CONDITION
 ) {
-    fun calculateRank(): Int {
-        return if (hasGasSupply) 0 else -5 + if (hasAirCon) 2 else 0 + if (hasFloorWarmer) 2 else 0 + if (hasFirePlace) 1 else 0 + if (hasTimberFloor) 2 else 1 + if (hasAlfresco) 1 else 0 +
-                when (kitchenDecoration) {
-                    DECORATION_CONDITION.BROKEN -> -4
-                    DECORATION_CONDITION.OLD -> -2
-                    DECORATION_CONDITION.USABLE -> 0
-                    DECORATION_CONDITION.NEW -> 2
-                } + when (backYardSize) {
-            BACK_YARD_SIZE.ABSENT -> -5
-            BACK_YARD_SIZE.SMALL -> -2
-            BACK_YARD_SIZE.MIDIUM -> 0
-            BACK_YARD_SIZE.LARGE -> 5
-        } + when (backYardCondition) {
-            BACK_YARD_CONDITION.STEP -> -1
-            BACK_YARD_CONDITION.SLOPE -> -3
-            BACK_YARD_CONDITION.FLAT -> 0
-            BACK_YARD_CONDITION.BUSHES -> -5
-        } + when (swimmingPoolCondition) {
-            SWIMMING_POOL_CONDITION.ABSENT -> 0
-            SWIMMING_POOL_CONDITION.BROKEN -> -3
-            SWIMMING_POOL_CONDITION.USABLE -> 0
-            SWIMMING_POOL_CONDITION.NEW -> 2
-        }
-    }
+
 }
 
 enum class LAND_SHAPE {
@@ -205,37 +152,5 @@ class HouseShape(
     val driveWayCarSpace: Int
 ) {
 
-    fun calculateRank(): Int {
-        return landSize / 20 + when (landShape) {
-            LAND_SHAPE.SQUARE -> 0
-            LAND_SHAPE.TRIANGLE -> -5
-            LAND_SHAPE.AXE -> -5
-            LAND_SHAPE.LADDER -> -3
-        } + ((masterRoomLength * masterRoomWidth) / 2
-                + (kitchenLength * kitchenWidth) / 2
-                + calculateLivingAreaSize()/3).toInt() + (bedroomNumber - 4) * 7 + when (masterRoomBathRoom) {
-            DECORATION_CONDITION.BROKEN -> -3
-            DECORATION_CONDITION.OLD -> -2
-            DECORATION_CONDITION.USABLE -> 0
-            DECORATION_CONDITION.NEW -> 1
-        } + when (masterRoomWardrobe) {
-            DECORATION_CONDITION.BROKEN -> -3
-            DECORATION_CONDITION.OLD -> -1
-            DECORATION_CONDITION.USABLE -> 0
-            DECORATION_CONDITION.NEW -> 1
-        } + if (isMasterRoomFacingNorthWest) 0 else -2 + when (rampusSpace) {
-            RAMPUS_SPACE.ABSENT -> -2
-            RAMPUS_SPACE.WITHOUT_DOOR -> 0
-            RAMPUS_SPACE.WITH_DOOR -> 2
-        } + when (inLawSpace) {
-            IN_LAW_SPACE.ABSENT -> 0
-            IN_LAW_SPACE.ATTACHED -> 10
-            IN_LAW_SPACE.SEPARATED -> 15
-        } + (coverdCarSpace - 1) * 5 + driveWayCarSpace * 2
 
-    }
-
-    fun calculateLivingAreaSize(): Float {
-        return (rampusLength * rampusWidth) + (dinningRoomLength * dinningRoomWidth) + (familyRoomLength * familyRoomWidth)
-    }
 }
