@@ -89,7 +89,8 @@ dependencies {
     //map
     implementation 'com.google.android.libraries.places:places:2.0.0'
 
-     //room
+    //room
+    implementation 'androidx.preference:preference:1.1.0-alpha05'
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"

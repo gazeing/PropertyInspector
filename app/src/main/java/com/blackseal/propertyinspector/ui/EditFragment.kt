@@ -19,8 +19,10 @@ import com.blackseal.propertyinspector.data.RankCalculator
 import com.blackseal.propertyinspector.data.calculateLivingAreaSize
 import com.blackseal.propertyinspector.model.*
 import com.google.android.gms.common.api.Status
+import com.google.android.libraries.places.api.model.PhotoMetadata
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.api.net.FetchPhotoRequest
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
@@ -70,7 +72,12 @@ class EditFragment : Fragment() {
 
     private fun startAutoComplete() {
         val fields: List<Place.Field> =
-            listOf(Place.Field.ID, Place.Field.NAME)
+            listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.PHOTO_METADATAS
+            )
 
 // Start the autocomplete intent.
         // Start the autocomplete intent.
@@ -88,6 +95,7 @@ class EditFragment : Fragment() {
                 RESULT_OK -> {
                     val place = Autocomplete.getPlaceFromIntent(data!!)
                     addressEditText.setText(place.address)
+                    place.photoMetadatas?.get(0)?.let { fetchImage(it) }
                 }
                 AutocompleteActivity.RESULT_ERROR -> { // TODO: Handle the error.
                     val status: Status = Autocomplete.getStatusFromIntent(data!!)
@@ -96,6 +104,18 @@ class EditFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun fetchImage(meta: PhotoMetadata) {
+        val photoRequest = FetchPhotoRequest.builder(meta)
+            .setMaxWidth(500) // Optional.
+            .setMaxHeight(500) // Optional.
+            .build()
+        (requireActivity() as MainActivity).placesClient.fetchPhoto(photoRequest)
+            .addOnSuccessListener { fetchPhotoResponse ->
+                val bitmap = fetchPhotoResponse.bitmap
+                photoImageView.setImageBitmap(bitmap)
+            }
     }
 
     private fun onSave() {

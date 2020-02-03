@@ -5,7 +5,7 @@ import com.blackseal.propertyinspector.model.*
 class RankCalculator(val prefs: Prefs, val inspection: Inspection) {
 
     fun calculateRank(): Int {
-        return (108 +
+        return (prefs.getBaseRankPref() +
                 calculateSuburbPreference() +
                 calculateDecorationRank() +
                 calculateHouseLocationRank() +

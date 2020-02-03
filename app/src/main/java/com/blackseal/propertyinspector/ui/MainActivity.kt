@@ -56,10 +56,16 @@ class MainActivity : AppCompatActivity(), InspectionListFragment.OnListFragmentI
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                goToSettingActivity()
+                true}
             R.id.action_export -> exportProperty()
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun goToSettingActivity() {
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
