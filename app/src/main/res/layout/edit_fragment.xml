@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center_vertical"
                     android:contentDescription="@string/house_photo"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/rankTextView"

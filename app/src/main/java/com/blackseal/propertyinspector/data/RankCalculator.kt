@@ -17,6 +17,8 @@ class RankCalculator(val prefs: Prefs, val inspection: Inspection) {
         inspection.address.contains("cherrybrook", true) -> 10
         inspection.address.contains("pennant hill", true) -> 15
         inspection.address.contains("baulkham hill", true) -> 5
+        inspection.address.contains("kellyville", true) -> 0
+        inspection.address.contains("thornleigh", true) -> 5
         else -> 0
     } * prefs.getSuburbPrefRate()
 
